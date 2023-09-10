@@ -19,5 +19,26 @@
 - Tree Shaking - remove unused code
 - Different dev and prod bundles
 
+/**
+ * Header
+ *  - Logo
+ *  - Nav Items
+ * Body
+ *  - Search
+ *  - RestaurantContainer
+ *    - RestaurantCard
+ *      - Img
+ *      - Name of Res, Star Rating, cuisine, delery tie
+ * Footer
+ *  - Copyright
+ *  - Links
+ *  - Address
+ *  - Contact
+ */
 
-
+# React Hooks
+ Normal JS Utility functions
+ - useState()- used to generate superpowerful state variables in react
+ Keeps the UI Layer in Sync with the Data Layer
+Whenever a state variable updates react rerenders the component
+ - useEffect()-
