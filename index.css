@@ -20,6 +20,10 @@
     padding: 10px;
     margin : 10px
 }
+.nav-items > ul > li:hover {
+   cursor: pointer;
+}
+
 
 .res-container{
     display: flex;
@@ -47,5 +51,34 @@
 
 .filter-btn{
     margin:10px;
+    cursor: pointer
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap:wrap
+}
+
+.shimmer-card {
+    height: 383px;
+    background-color: #f0f0f0;
+    width: 170px;
+    padding:5px;
+    border-radius:16px;
+    margin:10px;
+}
+.shimmer-image{
+    height:108px;
+    width:170px;
+    background-color:white
+}
+.login{
+    padding:5px;
+    border-radius:5px;
+    border: 1px dotted black;
+    background-color: orange;
+    color: white;
+}
+.login:hover{
     cursor: pointer
 }
