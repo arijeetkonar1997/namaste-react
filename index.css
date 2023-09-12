@@ -51,7 +51,8 @@
 
 .filter-btn{
     margin:10px;
-    cursor: pointer
+    cursor: pointer;
+    margin-left:4px;
 }
 
 .shimmer-container{
@@ -81,4 +82,11 @@
 }
 .login:hover{
     cursor: pointer
+}
+
+.search-box{
+    width: 180px;
+    margin-left:15px;
+    margin-right:4px;
+    border-radius:5px;
 }
