@@ -8,7 +8,10 @@ const Body = () => {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   //Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
-  console.log("Body Rendering");
+  //If there is no dependency array => useEffect is called on every render
+  //If there is empty dependency array => useEffect is called only once
+  //I the dependency array contains something it will only be called when the dependency changes
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -19,13 +22,13 @@ const Body = () => {
     );
     const json = await data.json();
     const resList =
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurants(resList);
     setFilteredRestaurants(resList);
   };
 
-  return listOfRestaurants.length === 0 ? (
+  return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
