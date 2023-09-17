@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const [isLoggedIn,setIsLoggedIn] = useState("Login");
   useEffect(() =>{
-    console.log("useEffect called")
   },[])
 
   console.log("Header Rendered")

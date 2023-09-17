@@ -103,6 +103,15 @@
 .user{
     padding:10px;
     border: 1px solid black;
+    text-align:center;
+}
+.user img{
+    width:110px;
+    height:120px;
+    border: 1px solid black;
+    border-radius:10px;
+    float:left;
+    margin:10px
 }
 
 .outer{

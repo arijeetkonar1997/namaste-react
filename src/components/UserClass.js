@@ -1,38 +1,61 @@
 import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
+    console.log("Child Constructor called")
     super(props);
-    console.log(this.props.name+'Child Constructor called')
     this.state = {
-      count: 0,
+      name: "",
+      location: "",
+      bio: "",
+      avatar_url: "",
     };
   }
-  componentDidMount(){
+  async componentDidMount() {
     //We make API calls here
-    console.log(this.props.name+'Child Component Did Mount called');
-}
+    const data = await fetch("https://api.github.com/users/arijeetkonar1997");
+    const json = await data.json();
+    console.log("Child ComponentDidMount called")
+    this.setState({
+      name: json.name,
+      location: json.location,
+      bio: json.bio,
+      avatar_url: json.avatar_url,
+    });
+  }
+
+  componentDidUpdate(){
+    console.log("Child Component Did Update")
+  }
+
+  componentWillUnmount(){
+    console.log("Child Component unmount called")
+   }
   render() {
-    console.log(this.props.name+'Child Render called')
-    const { name, location } = this.props;
     return (
       <div className="user">
-        <h2>Name:{name} Class</h2>
-        <h3>Location:{location}</h3>
-        <h3>Count:{this.state.count}</h3>
-        <button
-        //Never update state variables directly
-          onClick={() => {
-            this.setState({ count: this.state.count + 1 });
-          }}
-        >
-          Add
-        </button>
-        <div className="outer">
-            <div className="inner"></div>
-        </div>
+        <img src={this.state.avatar_url} alt="Dummy-Photo" />
+        <h2>Name: {this.state.name}</h2>
+        <h3>Location: {this.state.location}</h3>
+        <h3>Bio: {this.state.bio}</h3>
       </div>
     );
   }
 }
 
 export default UserClass;
+
+
+/*
+* ---MOUNTING---
+*  constructor(dummy)
+*  Render(dummy)
+*  DOM <HTML Dummy>
+* Component Did Mount
+*   <API Call>
+*   <this.setState> -> State variable is updated
+*
+* ---UPDATE---
+*   render(API Data)
+*   DOM <HTML API Data>
+*   Component DidUpdate
+*/
