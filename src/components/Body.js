@@ -2,12 +2,13 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Body = () => {
   //Local State variable - Super Powerful variable
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
   //Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
   //If there is no dependency array => useEffect is called on every render
   //If there is empty dependency array => useEffect is called only once
@@ -28,6 +29,12 @@ const Body = () => {
     setListOfRestaurants(resList);
     setFilteredRestaurants(resList);
   };
+
+  const onlineStatus = useOnlineStatus();
+  if(onlineStatus === false)
+  {
+    return <h1>You are offline</h1>
+  }
 
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
