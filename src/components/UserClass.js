@@ -2,11 +2,17 @@ import React from "react";
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
+    console.log(this.props.name+'Child Constructor called')
     this.state = {
       count: 0,
     };
   }
+  componentDidMount(){
+    //We make API calls here
+    console.log(this.props.name+'Child Component Did Mount called');
+}
   render() {
+    console.log(this.props.name+'Child Render called')
     const { name, location } = this.props;
     return (
       <div className="user">
@@ -21,6 +27,9 @@ class UserClass extends React.Component {
         >
           Add
         </button>
+        <div className="outer">
+            <div className="inner"></div>
+        </div>
       </div>
     );
   }
