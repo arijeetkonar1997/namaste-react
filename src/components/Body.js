@@ -24,7 +24,7 @@ const Body = () => {
     );
     const json = await data.json();
     const resList =
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurants(resList);
     setFilteredRestaurants(resList);
@@ -40,16 +40,16 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
+      <div className="filter p-2 m-2">
         <input
           type="text"
-          className="search-box"
+          className="search-box border border-solid border-blue-950 mx-2"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
-        <button
+        <button className="mx-2 px-1 bg-yellow-400 border border-black rounded-md"
           onClick={() => {
             const filteredRestaurant = listOfRestaurants.filter((res) =>
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -60,7 +60,7 @@ const Body = () => {
           Search
         </button>
         <button
-          className="filter-btn"
+          className="filter-btn mx-2 px-1 bg-yellow-400 border border-black rounded-md"
           onClick={() => {
             //Filter Logic
             const filteredList = listOfRestaurants?.filter(
@@ -72,7 +72,7 @@ const Body = () => {
           Top Rated Restaurant
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filteredRestaurants?.map((restaurant) => (
           <Link
             key={restaurant.info.id}
