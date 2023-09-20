@@ -1,5 +1,4 @@
 import { CDN_URL } from "../utils/constants";
-import { Link } from "react-router-dom";
 const RestaurantCard = (props) => {
   const { resData } = props;
 
@@ -7,7 +6,10 @@ const RestaurantCard = (props) => {
     resData?.info;
 
   return (
-    <div className="res-card w-56 m-2  p-4 rounded-md" style={{ backgroundColor: "#f0f0f0" }}>
+    <div
+      className="res-card w-56 m-2  p-4 rounded-md"
+      style={{ backgroundColor: "#f0f0f0" }}
+    >
       <img
         className="res-logo rounded-md"
         alt="res-logo"
@@ -20,6 +22,17 @@ const RestaurantCard = (props) => {
       <h4>{sla.deliveryTime} minutes</h4>
     </div>
   );
+};
+
+export const promotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white p-2 m-2 rounded-lg">Promoted</label>
+        <RestaurantCard {...props}/>
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;

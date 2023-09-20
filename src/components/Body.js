@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{promotedLabel} from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
+  const PromotedRestaurantCard = promotedLabel(RestaurantCard)
   //Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
   //If there is no dependency array => useEffect is called on every render
   //If there is empty dependency array => useEffect is called only once
@@ -24,7 +24,7 @@ const Body = () => {
     );
     const json = await data.json();
     const resList =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     setListOfRestaurants(resList);
     setFilteredRestaurants(resList);
@@ -78,7 +78,7 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
           >
-          <RestaurantCard resData={restaurant} />
+          {restaurant.info.promoted ? <PromotedRestaurantCard resData={restaurant}/> :<RestaurantCard resData={restaurant} />} 
           </Link>
         ))}
       </div>
