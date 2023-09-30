@@ -41,4 +41,14 @@
  - useState()- used to generate superpowerful state variables in react
  Keeps the UI Layer in Sync with the Data Layer
 Whenever a state variable updates react rerenders the component
- - useEffect()-
+ - useEffect()- 
+
+
+ # Redux
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to the app
+- Slice (CartSlice)
+- Dispathc(Action)
+- Selector
+
