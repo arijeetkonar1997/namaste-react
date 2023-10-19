@@ -52,3 +52,19 @@ Whenever a state variable updates react rerenders the component
 - Dispathc(Action)
 - Selector
 
+# Types of testing (developer)
+ - Unit Testing
+ - Integration Testing
+ - End to End Testing - e2e testing
+
+# Setting up testing in your app
+ - Install React Testing Library
+ - Install Jest
+ - Install Babel Dependencies
+ - Configure Babel
+ - Configure Parcel Config file to disable default babel transppilation
+ - Jest - npx jest --init
+ - Install Jest Environment Jsdom Library
+ - Instal @babel/preset-react to make jsx work in test cases
+ - Include @babel/preset-react inside my babel config
+ - Install npm i -D @testing-library/jest-dom
