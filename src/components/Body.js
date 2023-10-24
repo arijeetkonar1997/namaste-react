@@ -1,4 +1,4 @@
-import RestaurantCard,{promotedLabel} from "./RestaurantCard";
+import RestaurantCard, { promotedLabel } from "./RestaurantCard";
 import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const PromotedRestaurantCard = promotedLabel(RestaurantCard)
+  const PromotedRestaurantCard = promotedLabel(RestaurantCard);
   //Whenever state variable update, react triggers a reconciliation cycle(re-renders the component)
   //If there is no dependency array => useEffect is called on every render
   //If there is empty dependency array => useEffect is called only once
@@ -32,12 +32,11 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
-  if(onlineStatus === false)
-  {
-    return <h1>You are offline</h1>
+  if (onlineStatus === false) {
+    return <h1>You are offline</h1>;
   }
 
-  const {LoggedInUser,setUserName} = useContext(UserContext)
+  const { LoggedInUser, setUserName } = useContext(UserContext);
 
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
@@ -46,13 +45,15 @@ const Body = () => {
       <div className="filter p-2 m-2">
         <input
           type="text"
+          data-testid="searchInput"
           className="search-box border border-solid border-blue-950 mx-2"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
-        <button className="mx-2 px-1 bg-yellow-400 border border-black rounded-md"
+        <button
+          className="mx-2 px-1 bg-yellow-400 border border-black rounded-md"
           onClick={() => {
             const filteredRestaurant = listOfRestaurants.filter((res) =>
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -75,7 +76,14 @@ const Body = () => {
           Top Rated Restaurant
         </button>
         <label htmlFor="">Username</label>
-        <input type="text" value={LoggedInUser} className="border border-black p-1 m-1 rounded-sm" onChange={(e)=>{setUserName(e.target.value)}}/>
+        <input
+          type="text"
+          value={LoggedInUser}
+          className="border border-black p-1 m-1 rounded-sm"
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
+        />
       </div>
       <div className="res-container flex flex-wrap">
         {filteredRestaurants?.map((restaurant) => (
@@ -83,7 +91,13 @@ const Body = () => {
             key={restaurant.info.id}
             to={"/restaurant/" + restaurant.info.id}
           >
-          {restaurant.info.promoted ? <PromotedRestaurantCard resData={restaurant}/> :<RestaurantCard resData={restaurant} />} 
+            {restaurant.info.promoted ? (
+              <PromotedRestaurantCard resData={restaurant} />
+            ) : (
+              <RestaurantCard
+              data-testid="res-card"
+              resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
